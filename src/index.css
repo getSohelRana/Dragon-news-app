@@ -1,21 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap");
 
 @import "tailwindcss";
-@plugin "daisyui"{
-    themes : light --default;
-};
+@plugin "daisyui" {
+  themes: light --default;
+}
 
 body {
   font-family: "Poppins", sans-serif;
 }
 
-
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: #403F3F;
-  --color-secondary: #D72050;
-  --color-base-200 : #f3f3f3;
-  --color-base-300 : #f7f7f7;
-  --color-accent : #706f6f;
+  --color-primary: #403f3f;
+  --color-secondary: #d72050;
+  --color-base-200: #f3f3f3;
+  --color-base-300: #f7f7f7;
+  --color-accent: #706f6f;
+}
+
+@layer utilities {
+  .active {
+    @apply text-primary font-bold bg-[#E7E7E7];
+  }
+
+  
+  
 }
