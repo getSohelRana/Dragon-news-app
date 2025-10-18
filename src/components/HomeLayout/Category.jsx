@@ -1,7 +1,7 @@
 import React, { use } from "react";
 import { NavLink } from "react-router";
 
-const categoriesPromise = fetch('/categories.json')
+const categoriesPromise = fetch('../categories.json')
 .then(res => res.json());
 
 
@@ -10,7 +10,7 @@ const Category = () => {
   console.log(categories)
   return (
     <div>
-      <h1 className="font-bold text-xl">All Categories {categories.length}</h1>
+      <h1 className="font-bold text-xl">All Categories <span className="text-secondary">{categories.length}</span></h1>
       <div className="grid grid-cols-1 mt-5 gap-3">
         {
           categories.map((category) => 
