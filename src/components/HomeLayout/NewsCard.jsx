@@ -44,7 +44,7 @@ const NewsCard = ({ news }) => {
         </figure>
         <p className="text-sm text-gray-600">
           {details.slice(0, 220)}...
-          <span className="text-primary font-semibold cursor-pointer hover:underline">
+          <span className="text-warning font-semibold cursor-pointer hover:underline">
             Read More
           </span>
         </p>

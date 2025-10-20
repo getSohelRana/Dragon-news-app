@@ -1,8 +1,10 @@
-import React from "react";
-import { NavLink } from "react-router";
+import React, { use } from "react";
+import { Link, NavLink } from "react-router";
 import userIcon from '../assets/user.png'
+import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
+  const {user} = use(AuthContext)
   const links = <>
 		<li><NavLink to='/'>Home</NavLink></li>
 		<li><NavLink to='/about'>About</NavLink></li>
@@ -10,6 +12,7 @@ const Navbar = () => {
 	</>;
   return (
     <div className="navbar  items-center px-0">
+      <div>{user && user.email}</div>
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -43,8 +46,8 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end gap-4">
-				<img src={userIcon} alt="user_icon" />
-        <a className="btn btn-primary px-10 shadow-none text-white">Login</a>
+				<img  src={userIcon} alt="user_icon" />
+        <Link to="/auth/login" className="btn btn-primary px-10 shadow-none text-white">Login</Link>
       </div>
     </div>
   );

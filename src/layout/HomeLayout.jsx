@@ -21,14 +21,14 @@ const HomeLayout = () => {
       </header>
       {/* Main content goes here */}
       <main className="grid grid-cols-12 my-5 gap-5">
-        <aside className="col-span-3">
+        <aside className="col-span-3 sticky top-4 h-fit">
           {" "}
           <LeftAside></LeftAside>{" "}
         </aside>
         <section className="main col-span-6">
           <Outlet></Outlet>
         </section>
-        <aside className="col-span-3">
+        <aside className="col-span-3 sticky top-4 h-fit">
           <RightAside></RightAside>
         </aside>
       </main>
