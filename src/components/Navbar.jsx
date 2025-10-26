@@ -1,18 +1,36 @@
 import React, { use } from "react";
 import { Link, NavLink } from "react-router";
-import userIcon from '../assets/user.png'
+import userIcon from "../assets/user.png";
 import { AuthContext } from "../provider/AuthProvider";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
-  const {user} = use(AuthContext)
-  const links = <>
-		<li><NavLink to='/'>Home</NavLink></li>
-		<li><NavLink to='/about'>About</NavLink></li>
-		<li><NavLink to='/career'>Career</NavLink></li>
-	</>;
+  const { user, logOut } = use(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        toast.success("Log out succesfully done!");
+      })
+      .catch((error) => {
+        toast.warning(error.message);
+      });
+  };
+  const links = (
+    <>
+      <li>
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li>
+        <NavLink to="/about">About</NavLink>
+      </li>
+      <li>
+        <NavLink to="/career">Career</NavLink>
+      </li>
+    </>
+  );
   return (
     <div className="navbar  items-center px-0">
-      <div>{user && user.email}</div>
+      <div>{user && user.displayName}</div>
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -42,12 +60,30 @@ const Navbar = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 text-xl text-accent">
-         {links}
+          {links}
         </ul>
       </div>
       <div className="navbar-end gap-4">
-				<img  src={userIcon} alt="user_icon" />
-        <Link to="/auth/login" className="btn btn-primary px-10 shadow-none text-white">Login</Link>
+        <img
+          className="w-12 h-12 rounded-full object-cover"
+          src={`${user ? user.photoURL : userIcon}`}
+          alt="user_icon"
+        />
+        {user ? (
+          <button
+            onClick={handleLogOut}
+            className="btn btn-primary px-10 shadow-none text-white"
+          >
+            Log Out
+          </button>
+        ) : (
+          <Link
+            to="/auth/login"
+            className="btn btn-primary px-10 shadow-none text-white"
+          >
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );

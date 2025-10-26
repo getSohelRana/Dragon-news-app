@@ -2,10 +2,11 @@ import { format } from "date-fns";
 import React from "react";
 import { CiBookmark } from "react-icons/ci";
 import { FaRegEye, FaShareAlt, FaStar } from "react-icons/fa";
+import { Link } from "react-router";
 
 const NewsCard = ({ news }) => {
-  console.log(news);
-  const { title, author, thumbnail_url, details, total_view, rating, tags } =
+  // console.log(news);
+  const { id, title, author, thumbnail_url, details, total_view, rating, tags } =
     news || {};
   return (
     <div className="card bg-base-100 shadow border border-base-200 ">
@@ -43,10 +44,10 @@ const NewsCard = ({ news }) => {
           />
         </figure>
         <p className="text-sm text-gray-600">
-          {details.slice(0, 220)}...
-          <span className="text-warning font-semibold cursor-pointer hover:underline">
+          {details.slice(0, 200)}...
+          <Link to={`/news-details/${id}`} className="text-warning font-semibold cursor-pointer hover:underline">
             Read More
-          </span>
+          </Link>
         </p>
       </div>
 
